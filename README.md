@@ -6,6 +6,7 @@ remote:https://github.com/iaspnetcore/OrchardCore
 History
 
 OrchardCore 1.5   20230208
+OrchardCore 1.7.2   20231230
 
 ## first run
 

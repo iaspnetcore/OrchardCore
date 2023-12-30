@@ -11,7 +11,7 @@ namespace OrchardCore.Taxonomies
 {
     public class Migrations : DataMigration
     {
-        private IContentDefinitionManager _contentDefinitionManager;
+        private readonly IContentDefinitionManager _contentDefinitionManager;
 
         public Migrations(IContentDefinitionManager contentDefinitionManager)
         {
@@ -63,12 +63,14 @@ namespace OrchardCore.Taxonomies
                     "Latest")
             );
 
+            // The index in MySQL can accommodate up to 768 characters or 3072 bytes.
+            // DocumentId (2) + ContentType (254) + ContentPart (254) + ContentField (254) + Published and Latest (1) = 765 (< 768).
             SchemaBuilder.AlterIndexTable<TaxonomyIndex>(table => table
                 .CreateIndex("IDX_TaxonomyIndex_DocumentId_ContentType",
                     "DocumentId",
-                    "ContentType",
-                    "ContentPart",
-                    "ContentField",
+                    "ContentType(254)",
+                    "ContentPart(254)",
+                    "ContentField(254)",
                     "Published",
                     "Latest")
             );
@@ -125,12 +127,14 @@ namespace OrchardCore.Taxonomies
                     "Latest")
             );
 
+            // The index in MySQL can accommodate up to 768 characters or 3072 bytes.
+            // DocumentId (2) + ContentType (254) + ContentPart (254) + ContentField (254) + Published and Latest (1) = 765 (< 768).
             SchemaBuilder.AlterIndexTable<TaxonomyIndex>(table => table
                 .CreateIndex("IDX_TaxonomyIndex_DocumentId_ContentType",
                     "DocumentId",
-                    "ContentType",
-                    "ContentPart",
-                    "ContentField",
+                    "ContentType(254)",
+                    "ContentPart(254)",
+                    "ContentField(254)",
                     "Published",
                     "Latest")
             );
